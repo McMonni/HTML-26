@@ -1,0 +1,14 @@
+body {
+    background-color: cyan;
+    font-size: 14px;
+}
+h1 {
+    color: red;
+    font-size: 2em;
+}
+h2 {
+    color: rgb(93, 218, 43);
+}
+h1, h2 {
+    font-family:Arial, Helvetica, sans-serif
+}
