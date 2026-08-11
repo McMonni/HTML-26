@@ -1,9 +1,9 @@
 body {
-    background-color: cyan;
+    background-color: rgb(68, 0, 255);
     font-size: 14px;
 }
 h1 {
-    color: red;
+    color: rgb(157, 255, 0);
     font-size: 2em;
 }
 h2 {
