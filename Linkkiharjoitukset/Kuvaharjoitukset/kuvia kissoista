@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minusta</title>
+    <title>Kuvia kissoista</title>
 </head>
 <body>
-    <h1>Minusta</h1>
-    
-    <p>Hei nimeni on Juuso Kilpeläinen</p>
-    
-    <nav><a href="yhteystiedot.html">Yhteystietoni</a></nav>
+    <h1>Kuvia kissoista</h1>
+    <img src="Kuvat/kissa.jpg" alt="Kuva kissasta">
+    <img src="Kuvat/kissa2.jpg" alt="Kuva kissasta">
 </body>
 </html>
-
