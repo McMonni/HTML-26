@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Kuvia kissoista</h1>
-    <img src="Kuvat/kissa.jpg" alt="Kuva kissasta">
-    <img src="Kuvat/kissa2.jpg" alt="Kuva kissasta">
+    <p>Tässä on joitakin kuvia kissoista:</p>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjLXecdhZJUuvDIoHUNkeG4m1srt9SNAieMUHcyflgiLwGhGu2HJAQozeyjinV1z7IGAVJ5yZzbepRoNHQk1TleVj-DQvDTYdCKe7VudQKXQ&s=10"
 </body>
 </html>
