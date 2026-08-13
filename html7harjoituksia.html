@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="tyyli.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML7</title>
+</head>
+<body>
+
+
+
+    <h1>HTML7 Tehtävät 1-9</h1>
+    
+    <label for="nimi">Nimi</label>
+            <input id="nimi" name="nimi" type="text">
+        <label for="email">Sähköposti</label>
+        <input id="email" name="email" type="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Tämä on pakollinen"><br><br>
+        <label for="pin">Salasana</label>
+                <input id="password" name="salasana" type="password" required pattern="[0-9]{8}" title="Vain numeroita"><br><br>
+        <label for="ikä">Ikä</label>
+        <input id="ikä" name="ikä" type="date""><br><br>    
+
+    <label><input type="radio" name="Mies" value="Mies"> Mies oletettu</label>
+        <label><input type="radio" name="Nainen" value="Nainen"> Nais oletettu</label>
+    <label><input type="radio" name="Muu" value="Muu"> Muu oletettu</label><br><br>
+        <label><input type="checkbox" name="Eläin"> Olen eläin</label>
+        <label for="muuta">Jokin muu...</label>
+        <textarea name="Jokin muu" id="muuta" required placeholder="Kertoisitko tarkemmin..."></textarea><br><br>
+        <label for="käyttäjätunnus">Käyttäjätunnus</label>
+        <input id="käyttäjätunnus" name="käyttäjätunnus" type="text" minlength="4" maxlength="12" required>
+
+
+
+
+         <fieldset>
+    <h2>YHTEYSTIEDOT</h2>
+    <label for="Nimi">Nimi</label>
+    <input id="Nimi" name="Nimi" type="text" required pattern=".*\S.*" title="Kirjoita nimesi tähän."><br><br>
+    <label for="Sähköposti">Sähköposti</label>
+    <input id="Sähköposti" name="Sähköposti" type="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Kirjoita sähköpostiosoitteesi tähän."><br><br>
+    <label for="puhelin">Puhelin</label>
+    <input id="puhelin" name="puhelin" type="tel" required pattern="[0-9]{10,15}" title="Kirjoita puhelintasi tähän."><br><br>
+  
+    </fieldset>
+    
+    
+<h2> YHTEYDENOTTOLOMAKE</h2>
+
+  
+
+   <form action="post" action="laheta.php">
+        <form action="laheta.php" method="post"> <fieldset>
+        <label for="nimi">Oma nimi:</label><br> 
+        <input type="text" id="nimi" name="nimi" required pattern=".*\S.*" title="Käyttäjänimesi"><br><br>
+
+        <label for="email">Oma sähköposti:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="Aihe">Salasana:</label><br>
+        <input type="password" id="Salasana" name="Salasana" minlength="8" required pattern=".*\S.*" title="Salasanasi"><br><br>
+        <label for="Omaviesti" id="Omaviesti">Jätä tähän viesti:</label><br>
+        <textarea id="Omaviesti" name="Omaviesti" required placeholder="Kirjoita viestisi tähän..."></textarea><br><br>
+        <button type="submit">Lähetä</button>
+        </form>
+        </fieldset>
+
+    <h2>Tehtävä 9</h2>
+    <p> Korjaa label-yhteys</p> <p>Koska posti ei kirjoiteta samalla tavalla kuin email, tässä tärkeintä on kirjoittaa molemmat samalla nimellä </p>
+<p> Eli seuraavasti:</p>
+<label for="email">Sähköposti</label>
+<input type="email" id="email" name="email" required><br><br>
+<h3>Tehtävä 10</h3>
+<label for="nimi">Nimi</label>
+<input id="nimi" name="nimi" type="text">
+</body>
+</html>
