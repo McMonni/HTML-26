@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torstaietatunti</title>
+</head>
+<body><h1>Torstai Teams-tunti 13.6.2026</h1>
+</h1>
+<form action="laheta.php" method="post">
+  <label for="nimi">Oma nimi:</label><br>
+  <input type="text" id="nimi" name="nimi" required pattern=".*\S.*" title="Kirjoita oma nimesi tähän."><br><br>
+
+  <label for="email">Oma sähköposti:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+
+  <label for="Aihe">Aihe:</label><br>
+  <input type="text" id="Aihe" name="Aihe" required pattern=".*\S.*" title="Kirjoita aiheesi tähän."><br><br>
+
+  <label for="Viesti">Jätä tähän viesti:</label><br>
+  <textarea id="Viesti" name="Viesti" required placeholder="Kirjoita viestisi tähän..."></textarea><br><br> 
+
+  <input type="submit" value="Lähetä">
+</form>
+
+</body>
+</html>
