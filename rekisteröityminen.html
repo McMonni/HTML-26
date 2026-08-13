@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekisteröityminen</title>
+    <link rel="stylesheet" href="tyyli.css">
+</head>
+
+
+    <h1>Rekisteröityminen</h1>
+    <form action="laheta.php" method="post"> <fieldset> <legend>Rekisteröityminen</legend>
+        <label for="nimi">Käyttäjänimi:</label><br>
+        <input type="text" id="nimi" name="nimi" required pattern=".*\S.*" title="Käyttäjänimesi"><br><br>
+
+        <label for="email">Oma sähköposti:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="Aihe">Salasana:</label><br>
+        <input type="password" id="Salasana" name="Salasana" minlength="8" required pattern=".*\S.*" title="Salasanasi"><br><br>
+
+        <label for="Salasanasi uudestaan">Salasana uudestaan:</label><br>
+         <legend><input type="password" id="Salasana uudestaan" name="Salasana uudestaan" minlength="8" placeholder="Salasana uudestaan" required pattern=".*\S.*" title="Salasanasi uudestaan"><br><br> </legend>
+        <label for="Syntymäaika">Syntymäaika:</label><br>
+        <input type="date" id="Syntymäaika" name="Syntymäaika" required><br><br>
+        <label for="Kättöehdot">Hyväksyn käyttöehdot:</label><br>
+        <input type="checkbox" id="Käyttöehdot" name="Käyttöehdot" required><br><br>
+
+        <input type="submit" value="Lähetä">
