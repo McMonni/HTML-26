@@ -1,0 +1,28 @@
+:root {
+  /* Värit */
+  --bg-color: #ee7613;       /* Syvä tummansininen tausta */
+  --card-bg: #1e293b;        /* Hieman vaaleampi sininen kentille */
+  --accent-color: #384bf8;   /* Kirkas sähkönsininen salasanapisteille */
+  --text-main: #f8fafc;      /* Lähes valkoinen pääteksti */
+  --text-muted: #000000;     /* Siniharmaa reunusväri */
+  
+  /* Fontti */
+  --font-fancy: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Sivun perustyylit */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-fancy);
+  line-height: 1.6;
+  margin: 0;
+  padding: 2rem;
+}
+
+/* Otsikko */
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+}
