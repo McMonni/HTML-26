@@ -1,0 +1,55 @@
+/* Säiliö, joka tekee taulukosta skrollattavan mobiilissa */
+.taulukko-säiliö {
+    overflow-x: auto;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Taulukon perustyylit */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Sulauttaa tuplareunaviivat yhteen */
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    text-align: left;
+}
+
+/* Taulukon otsikko (Caption) */
+caption {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+/* Solujen pehmusteet ja alareunaviivat */
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Otsikkorivin tyylit (thead) */
+thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Joka toisen rivin väritys (Zebra striping) tbody-osion sisällä */
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+/* Korostus, kun hiiri viedään rivin päälle */
+tbody tr:hover {
+    background-color: #e9e9e9;
+    cursor: pointer;
+}
+
+/* Alarivin tyylit (tfoot) */
+tfoot tr {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    border-top: 2px solid #009879;
+}
