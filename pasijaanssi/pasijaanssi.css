@@ -1,0 +1,12 @@
+body {
+    background-color: #AA7D39;
+    color: black;
+    font-family: Verdana, sans-serif;
+    margin: 1% 5%;
+    line-height: 150%;
+}
+
+h1 {
+    /* Vaihtoehto A: Jos ylä- ja alapuolella pitää olla 1.5em (ja sivuilla 1em) */
+    margin: 1.5em 1em;
+}
