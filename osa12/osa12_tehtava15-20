@@ -1,0 +1,6 @@
+Mikä on head-alueen tehtävä? tehtävä on tallentaa sivun metatiedot.
+Missä title näkyy ja miksi se on tärkeä? Title näkyy välilehdessä ja se kertoo minkälainen sivu on kyseessä.
+Mitä meta description tekee? Se kuvaa sivun sisältöä lyhyesti ja hakukone voi käyttää sitä hakutuloksen tekstikatkelmana.
+Mikä on perusajatus robots-metan ja robots.txt:n erossa? Robots-meta antaa sivukohtaisia seuraamisohjeita. robots.txt on sivustotason tiedosto, jolla ohjataan hakurobottien pääsyä URL-alueille.
+Miksi canonical-linkkiä käytetään? Se kertoo mikä urli on ensisijaisesti kyseessä.
+Miksi hyvä SEO ei synny pelkästä head-alueesta? Sivun sisältö, käyttökokemus, linkit ja semanttisuus ovat yksi iso kokonaisuus.
