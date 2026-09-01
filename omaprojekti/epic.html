@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Oppilashallintajärjestelmä</title>
+</head>
+<body>
+
+    <h1>Oppilashallintajärjestelmä</h1>
+
+
+   <legend><h2>Lisää uusi opiskelija</h2></legend>
+    
+    <form action="#" method="POST">
+        
+        <fieldset>
+            <h3>Perustiedot</h3>
+        <p>
+            <label for="etunimi">Etunimi:</label><br>
+            <input type="text" id="etunimi" name="etunimi" required placeholder="Matti">
+        </p>
+        <p>
+            <label for="sukunimi">Sukunimi:</label><br>
+            <input type="text" id="sukunimi" name="sukunimi" required placeholder="Meikäläinen">
+        </p>
+
+        <h3>Yhteystiedot</h3>
+        <p>
+            <label for="sahkoposti">Sähköposti:</label><br>
+            <input type="email" id="sahkoposti" name="sahkoposti" required placeholder="matti.meikalainen@koulu.fi">
+        </p>
+        <p>
+            <label for="puhelin">Puhelinnumero:</label><br>
+            <input type="tel" id="puhelin" name="puhelin" required placeholder="0401234567">
+        </p>
+
+        <h3>Osoitetiedot</h3>
+        <p>
+            <label for="katuosoite">Katuosoite:</label><br>
+            <input type="text" id="katuosoite" name="katuosoite" required placeholder="Koulukatu 1 A 4">
+        </p>
+        <p>
+            <label for="postinumero">Postinumero:</label><br>
+            <input type="text" id="postinumero" name="postinumero" pattern="[0-9]{5}" required placeholder="00100">
+        </p>
+        <p>
+            <label for="postitoimipaikka">Postitoimipaikka:</label><br>
+            <input type="text" id="postitoimipaikka" name="postitoimipaikka" required placeholder="Helsinki">
+        </p>
+
+        <p>
+            <button type="submit">Tallenna opiskelija</button>
+            <button type="reset">Tyhjennä</button>
+        </fieldset>
+        </p>
+    </form>
+
+    <hr>
+
+    <h2>Opiskelijaluettelo</h2>
+
+    <table border="3" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Opiskelijatunnus</th>
+                <th>Sukunimi</th>
+                <th>Etunimi</th>
+                <th>Sähköposti</th>
+                <th>Puhelinnumero</th>
+                <th>Katuosoite</th>
+                <th>Postinumero</th>
+                <th>Postitoimipaikka</th>
+                <th>Toiminnot</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <td>1001</td>
+                <td>Virtanen</td>
+                <td>Ville</td>
+                <td>ville.virtanen@koulu.fi</td>
+                <td>050 123 4567</td>
+                <td>Opintie 3 </td>
+                <td>33100</td>
+                <td>Tampere</td>
+                <td>
+                    <a href="action=edit&opiskelijatunnus=1001">Muokkaa</a> | 
+                    <a href="action=delete&opiskelijatunnus=1001">Poista</a>
+                </td>
+            </tr>
+       
+            <tr>
+                <td>1002</td>
+                <td>Mäkelä</td>
+                <td>Maija</td>
+                <td>maija.makela@koulu.fi</td>
+                <td>045 111 2222</td>
+                <td>Metsätie 15</td>
+                <td>00200</td>
+                <td>Helsinki</td>
+                <td>
+                    <a href="action=edit&opiskelijatunnus=1002">Muokkaa</a> | 
+                    <a href="action=delete&opiskelijatunnus=1002">Poista</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

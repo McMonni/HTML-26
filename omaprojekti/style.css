@@ -1,0 +1,174 @@
+/* --- Yleiset tyylit ja fontit --- */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    margin: 0;
+    padding: 2rem;
+}
+
+h1 {
+    color: #1e3a8a;
+    border-bottom: 3px solid #1e3a8a;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-top: 2rem;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #d1d5db;
+    margin: 3rem 0;
+}
+
+/* --- Lomakkeen tyylit (Form & Fieldset) --- */
+form {
+    max-width: 600px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+}
+
+fieldset {
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 1.5rem;
+    background-color: #ffffff;
+}
+
+/* Lomakkeen alaotsikot (Perustiedot, Yhteystiedot jne.) */
+fieldset h3 {
+    color: #1e3a8a;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.25rem;
+}
+fieldset h3:first-of-type {
+    margin-top: 0;
+}
+
+/* Tekstikentät ja Labelit */
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Kentän aktivointi (Focus) */
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* --- Painikkeet --- */
+button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-right: 0.5rem;
+}
+
+/* Tallenna-painike (Submit) */
+button[type="submit"] {
+    background-color: #10b981;
+    color: white;
+}
+button[type="submit"]:hover {
+    background-color: #059669;
+}
+
+/* Tyhjennä-painike (Reset) */
+button[type="reset"] {
+    background-color: #ef4444;
+    color: white;
+}
+button[type="reset"]:hover {
+    background-color: #dc2626;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* --- Opiskelijaluettelo (Taulukko) --- */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Poistaa rumat tuplareunat */
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+}
+
+/* Ylikirjoitetaan HTML:n vanha border="3" kauniimmaksi */
+table, th, td {
+    border: 1px solid #e5e7eb !important; 
+}
+
+th {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    text-align: left;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+}
+
+td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+/* Joka toisen rivin väritys (parantaa luettavuutta) */
+tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+/* Rivin korostus hiirellä vietäessä */
+tbody tr:hover {
+    background-color: #f3f4f6;
+}
+
+/* Taulukon linkit (Muokkaa | Poista) */
+td a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+/* Erityistyyli "Poista"-linkille */
+td a[href*="delete"] {
+    color: #ef4444;
+}
