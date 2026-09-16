@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Coins Invaders</title>
+  <style>
+    /* Retro Arcade -ulkoasu */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 0.2rem 0;
+      font-size: 2rem;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px #00ff00;
+    }
+
+    .ohje {
+      margin-bottom: 1.5rem;
+      color: #00aa00;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    .canvas-container {
+      position: relative;
+    }
+
+    canvas {
+      background-color: #000000;
+      border: 4px solid #00ff00;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+      cursor: crosshair;
+      display: block;
+    }
+
+    /* Kuvaputkiefekti (Scanlines) */
+    .canvas-container::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+
+    /* Retrovalikko */
+    .menu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.95);
+      border: 3px double #00ff00;
+      padding: 2rem;
+      text-align: center;
+      min-width: 260px;
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    }
+
+    .btn {
+      background-color: transparent;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+      padding: 0.75rem 1.5rem;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #00ff00;
+      color: #000000;
+      box-shadow: 0 0 15px #00ff00;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Space Coins</h1>
+  <div class="ohje">LIIKUTA HIIRELLIÄ / KLIKKAA AMMUAKSESI</div>
+
+  <div class="canvas-container">
+    <canvas id="gameCanvas" width="440" height="600"></canvas>
+    
+    <!-- Valikko -->
+    <div id="menu" class="menu">
+      <h2 id="menuTitle" style="font-size: 1.5rem; margin: 0 0 1rem 0;">READY PLAYER 1</h2>
+      <p id="menuScore" style="display: none; font-size: 1.1rem; color: #00ff00;"></p>
+      <button id="startBtn" class="btn">START GAME</button>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const menu = document.getElementById("menu");
+    const startBtn = document.getElementById("startBtn");
+    const menuTitle = document.getElementById("menuTitle");
+    const menuScore = document.getElementById("menuScore");
+
+    let score = 0;
+    let gameActive = false;
+    let playerX = canvas.width / 2;
+    const playerY = canvas.height - 40;
+    
+    let bullets = [];
+    let coins = [];
+    
+    const bulletSpeed = 20;
+    const coinSpawnRate = 0.025;
+    let coinSpeed = 1;
+
+    // Toimivat pikselikuviot tekstimuodossa (X = väri, tyhjä = tyhjä tila)
+    const shipRows = [
+      "     X     ",
+      "    XXX    ",
+      "    XXX    ",
+      " XXXXXXX   ",
+      "XXXXXXXXXXX",
+      "XXXXXXXXXXX",
+      "X XXXXXXX X",
+      "X  X   X  X"
+    ];
+
+    const coinRows = [
+      "  XXXX  ",
+      " XXXXXX ",
+      "XX XX XX",
+      "XX    XX",
+      "XX    XX",
+      "XX XX XX",
+      " XXXXXX ",
+      "  XXXX  "
+    ];
+
+    // Piirtofunktio tekstiriveistä
+    function drawSprite(rows, startX, startY, pixelSize, color) {
+      ctx.fillStyle = color;
+      for (let r = 0; r < rows.length; r++) {
+        for (let c = 0; c < rows[r].length; c++) {
+          if (rows[r][c] === 'X') {
+            ctx.fillRect(startX + (c * pixelSize), startY + (r * pixelSize), pixelSize, pixelSize);
+          }
+        }
+      }
+    }
+
+    // Liikkuminen
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      playerX = e.clientX - rect.left;
+      const halfWidth = (11 * 3) / 2;
+      if (playerX < halfWidth) playerX = halfWidth;
+      if (playerX > canvas.width - halfWidth) playerX = canvas.width - halfWidth;
+    });
+
+    // Ampuminen
+    canvas.addEventListener("click", () => {
+      if (!gameActive) return;
+      bullets.push({
+        x: playerX - 2, 
+        y: playerY - 10,
+        w: 4,
+        h: 14
+      });
+    });
+
+    startBtn.addEventListener("click", () => {
+      score = 0;
+      coinSpeed = 1;
+      bullets = [];
+      coins = [];
+      menu.style.display = "none";
+      gameActive = true;
+      gameLoop();
+    });
+
+    function gameOver() {
+      gameActive = false;
+      menuTitle.innerText = "GAME OVER";
+      menuScore.innerText = `SCORE: ${score}`;
+      menuScore.style.display = "block";
+      startBtn.innerText = "TRY AGAIN";
+      menu.style.display = "block";
+    }
+
+    function gameLoop() {
+      if (!gameActive) return;
+
+      // Piirretään musta tausta
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Luodaan uusia kolikoita
+      if (Math.random() < coinSpawnRate) {
+        coins.push({
+          x: Math.random() * (canvas.width - 40) + 10,
+          y: -40,
+          w: 8 * 4,
+          h: 8 * 4
+        });
+      }
+
+      // Ammukset
+      ctx.fillStyle = "#00ff00";
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        bullets[i].y -= bulletSpeed;
+        ctx.fillRect(bullets[i].x, bullets[i].y, bullets[i].w, bullets[i].h);
+
+        if (bullets[i].y < 0) {
+          bullets.splice(i, 1);
+        }
+      }
+
+      // Kolikot ja törmäykset
+      for (let i = coins.length - 1; i >= 0; i--) {
+        coins[i].y += coinSpeed;
+
+        // Piirretään keltainen pikselikolikko
+        drawSprite(coinRows, coins[i].x, coins[i].y, 4, "#ffcc00");
+
+        // Jos kolikko pääsee pohjaan asti
+        if (coins[i].y > canvas.height) {
+          gameOver();
+          return;
+        }
+
+        // Ammuksen ja kolikon osumatunnistus
+        for (let j = bullets.length - 1; j >= 0; j--) {
+          if (bullets[j].x < coins[i].x + coins[i].w &&
+              bullets[j].x + bullets[j].w > coins[i].x &&
+              bullets[j].y < coins[i].y + coins[i].h &&
+              bullets[j].y + bullets[j].h > coins[i].y) {
+            
+            coins.splice(i, 1);
+            bullets.splice(j, 1);
+            score += 10;
+            
+            // Vaikeustaso nousee
+            if (score % 50 === 0) {
+              coinSpeed += 0.2;
+            }
+            break;
+          }
+        }
+      }
+
+      // Piirretään pelaajan avaruusalus (Vihreä)
+      const shipW = 11 * 3;
+      drawSprite(shipRows, playerX - (shipW / 2), playerY, 3, "#00ff00");
+
+      // Käyttöliittymätekstit
+      ctx.fillStyle = "#00ff00";
+      ctx.font = "16px 'Courier New', monospace";
+      ctx.fillText(`SCORE: ${score}`, 20, 35);
+      ctx.fillText(`HI-SCORE: 9990`, canvas.width - 160, 35);
+
+      requestAnimationFrame(gameLoop);
+    }
+  </script>
+</body>
+</html>
