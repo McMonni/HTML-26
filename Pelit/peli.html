@@ -97,7 +97,7 @@
 <body>
 
   <h1>Space Coins</h1>
-  <div class="ohje">LIIKUTA HIIRELLIÄ / KLIKKAA AMMUAKSESI</div>
+  <div class="ohje">LIIKUTA HIIRELLIÄ / KLIKKAA AMPUAKSESI</div>
 
   <div class="canvas-container">
     <canvas id="gameCanvas" width="440" height="600"></canvas>
@@ -119,6 +119,7 @@
     const menuScore = document.getElementById("menuScore");
 
     let score = 0;
+    let lives = 20; // 20 elämää
     let gameActive = false;
     let playerX = canvas.width / 2;
     const playerY = canvas.height - 40;
@@ -126,11 +127,11 @@
     let bullets = [];
     let coins = [];
     
-    const bulletSpeed = 20;
-    const coinSpawnRate = 0.025;
-    let coinSpeed = 1;
+    const bulletSpeed = 6;
+    const coinSpawnRate = 0.02; // KORJATTU: Vähennetty reilusti (oli 0.06), jotta kolikoita tulee rauhallisemmin
+    let coinSpeed = 0.25;
 
-    // Toimivat pikselikuviot tekstimuodossa (X = väri, tyhjä = tyhjä tila)
+    // Pikselikuviot
     const shipRows = [
       "     X     ",
       "    XXX    ",
@@ -153,7 +154,6 @@
       "  XXXX  "
     ];
 
-    // Piirtofunktio tekstiriveistä
     function drawSprite(rows, startX, startY, pixelSize, color) {
       ctx.fillStyle = color;
       for (let r = 0; r < rows.length; r++) {
@@ -178,16 +178,16 @@
     canvas.addEventListener("click", () => {
       if (!gameActive) return;
       bullets.push({
-        x: playerX - 2, 
+        x: playerX,
         y: playerY - 10,
-        w: 4,
-        h: 14
+        radius: 8
       });
     });
 
     startBtn.addEventListener("click", () => {
       score = 0;
-      coinSpeed = 1;
+      lives = 20; // Nollataan elämät takaisin kahteenkymmeneen
+      coinSpeed = 0.25;
       bullets = [];
       coins = [];
       menu.style.display = "none";
@@ -207,14 +207,14 @@
     function gameLoop() {
       if (!gameActive) return;
 
-      // Piirretään musta tausta
+      // Taustan piirto
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Luodaan uusia kolikoita
+      // Kolikoiden luonti
       if (Math.random() < coinSpawnRate) {
         coins.push({
-          x: Math.random() * (canvas.width - 40) + 10,
+          x: Math.random() * (canvas.width - 40) + 6,
           y: -40,
           w: 8 * 4,
           h: 8 * 4
@@ -225,54 +225,64 @@
       ctx.fillStyle = "#00ff00";
       for (let i = bullets.length - 1; i >= 0; i--) {
         bullets[i].y -= bulletSpeed;
-        ctx.fillRect(bullets[i].x, bullets[i].y, bullets[i].w, bullets[i].h);
+        ctx.fillRect(bullets[i].x - 3, bullets[i].y, 6, 14);
 
         if (bullets[i].y < 0) {
           bullets.splice(i, 1);
         }
       }
 
-      // Kolikot ja törmäykset
+      // Kolikot ja osumat
       for (let i = coins.length - 1; i >= 0; i--) {
         coins[i].y += coinSpeed;
 
-        // Piirretään keltainen pikselikolikko
         drawSprite(coinRows, coins[i].x, coins[i].y, 4, "#ffcc00");
 
-        // Jos kolikko pääsee pohjaan asti
+        // Jos kolikko pääsee pohjaan
         if (coins[i].y > canvas.height) {
-          gameOver();
-          return;
+          coins.splice(i, 1); // Poistetaan kolikko listasta
+          lives--; // Vähennetään yksi elämä
+          
+          if (lives <= 0) {
+            gameOver();
+            return;
+          }
+          continue;
         }
 
-        // Ammuksen ja kolikon osumatunnistus
+        // Osumatunnistus
+        let coinCenterX = coins[i].x + (coins[i].w / 2);
+        let coinCenterY = coins[i].y + (coins[i].h / 2);
+
         for (let j = bullets.length - 1; j >= 0; j--) {
-          if (bullets[j].x < coins[i].x + coins[i].w &&
-              bullets[j].x + bullets[j].w > coins[i].x &&
-              bullets[j].y < coins[i].y + coins[i].h &&
-              bullets[j].y + bullets[j].h > coins[i].y) {
+          let distX = Math.abs(bullets[j].x - coinCenterX);
+          let distY = Math.abs(bullets[j].y - coinCenterY);
+
+          if (distX < (coins[i].w / 2 + bullets[j].radius) && 
+              distY < (coins[i].h / 2 + bullets[j].radius)) {
             
             coins.splice(i, 1);
             bullets.splice(j, 1);
             score += 10;
             
-            // Vaikeustaso nousee
+            // Maltillinen kiihtyvyys (0.02)
             if (score % 50 === 0) {
-              coinSpeed += 0.2;
+              coinSpeed += 0.02;
             }
             break;
           }
         }
       }
 
-      // Piirretään pelaajan avaruusalus (Vihreä)
+      // Piirretään alus
       const shipW = 11 * 3;
       drawSprite(shipRows, playerX - (shipW / 2), playerY, 3, "#00ff00");
 
-      // Käyttöliittymätekstit
+      // Käyttöliittymä
       ctx.fillStyle = "#00ff00";
       ctx.font = "16px 'Courier New', monospace";
       ctx.fillText(`SCORE: ${score}`, 20, 35);
+      ctx.fillText(`LIVES: ${lives}`, 20, 60); // Näytetään jäljellä olevat elämät ruudulla
       ctx.fillText(`HI-SCORE: 9990`, canvas.width - 160, 35);
 
       requestAnimationFrame(gameLoop);
