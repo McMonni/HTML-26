@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <link rel="stylesheet" href="../CSS-Harjoitukset/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS-Harjoitukset</title>
+</head>
+<body>
+    
+ <h2>CSS-Harjoitukset</h2>
+<p>Tämä on ensimmäinen CSS-harjoitus.</p>
+  
+<section>
+    <h2>1. Buttons (Painikkeet)</h2>
+    <div class="flex-group">
+      
+      <button class="btn" type="button">Tallenna tiedot</button>
+      
+     
+      <button class="btn btn--danger" type="button">Poista tili</button>
+    </div>
+  </section>
+
+
+  <section>
+    <h2>2. Cards (Kortit)</h2>
+    <div class="flex-group">
+    
+      <div class="card" tabindex="0">
+        <h3>Peruskortti</h3>
+        <p>Tämä on tavallinen korttikomponentti, joka reagoi hover- ja focus-tiloihin.</p>
+      </div>
+
+      
+      <div class="card card--featured" tabindex="0">
+        <h3>Korostettu kortti</h3>
+        <p>Tämä kortti käyttää modifier-luokkaa tuomaan esiin tärkeämpää sisältöä.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Alerts (Ilmoitukset)</h2>
+    <div class="alert" tabindex="0" role="alert">
+      <strong>Huomio:</strong> Järjestelmä päivitetään ensi yönä klo 02:00.
+    </div>
+
+<div class="alert alert--success" tabindex="0" role="alert">
+      <strong>Onnistui!</strong> Asetukset on tallennettu onnistuneesti.
+    </div>
+  </section>
+
+</body>
+</html>
