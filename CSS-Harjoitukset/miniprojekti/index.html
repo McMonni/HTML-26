@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miniprojekti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form class="demo-form" novalidate>
+  
+  <!-- 1. REQUIRED (Pakollinen kenttä) -->
+  <div class="form-group">
+    <label for="username">Käyttäjätunnus <span class="req-star" aria-hidden="true">*</span></label>
+    <input type="text" id="username" required placeholder="Valitse käyttäjätunnus">
+  </div>
+
+  <!-- 2. INVALID (Virheellinen syöte) -->
+  <div class="form-group">
+    <label for="email">Sähköpostiosoite <span class="req-star" aria-hidden="true">*</span></label>
+    <input type="email" id="email" required value="virheellinen-sahkoposti@">
+    <p class="error-hint">Tarkista sähköpostiosoitteen muoto.</p>
+  </div>
+
+  <!-- 3. VALID (Hyväksytty syöte) -->
+  <div class="form-group">
+    <label for="website">Kotisivu</label>
+    <input type="url" id="website" value="https://google.fi">
+  </div>
+
+  <!-- 4. DISABLED (Pois käytöstä) -->
+  <div class="form-group">
+    <label for="account-id">Asiakasnumero (Ei muokattavissa)</label>
+    <input type="text" id="account-id" disabled value="Juuso Kilpeläinen">
+  </div>
+
+  <!-- 5. CHECKED (Valintaruutu / Radio) -->
+  <div class="checkbox-group">
+    <label class="custom-checkbox">
+      <input type="checkbox" id="terms" required checked>
+      <span class="checkmark"></span>
+      Hyväksyn palvelun käyttöehdot <span class="req-star" aria-hidden="true">*</span>
+    </label>
+  </div>
+
+</form
+    
+</body>
+</html>
