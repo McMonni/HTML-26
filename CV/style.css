@@ -1,0 +1,239 @@
+/* --- BRÄNDIMUUTTUJAT JA TEEMA --- */
+:root {
+    --primary-color: #0052cc;
+    --primary-gradient: linear-gradient(90deg, #0052cc, #4c9aff);
+    --text-dark: #091e42;
+    --text-muted: #505f79;
+    --bg-page: #f4f5f7;
+    --bg-card: #ffffff;
+    --bg-badge: #ebecf0;
+    --border-color: #dfe1e6;
+    --border-radius: 12px;
+}
+
+/* --- YLEISASETUKSET --- */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-page);
+    padding: 50px 20px;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- CV-KORTTIRAKENNE (Card) --- */
+.cv-card {
+    position: relative;
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 24px rgba(9, 30, 66, 0.08), 0 1px 4px rgba(9, 30, 66, 0.05);
+    padding: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* --- DYNAAMINEN KORISTEVIIVA YLÄREUNASSA --- */
+.cv-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: var(--primary-gradient);
+}
+
+/* --- TIPOGRAFIA JA OTSIKOT --- */
+h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-top: 0;
+    margin-bottom: 6px;
+    color: var(--text-dark);
+}
+
+.subtitle {
+    font-size: 1.15rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-top: 35px;
+    margin-bottom: 18px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #253858;
+}
+
+/* --- YHTEYSTIEDOT (Korttimainen yläpalkki) --- */
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+    padding: 18px 24px;
+    background-color: #f0f4f8;
+    border-radius: 8px;
+    margin-bottom: 35px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-left: 4px solid var(--primary-color);
+}
+
+.contact-info span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- LISTAT JA RANSKALAISET VIIVAT --- */
+ul {
+    margin: 8px 0 0 0;
+    padding-left: 22px;
+}
+
+li {
+    margin-bottom: 6px;
+    color: #253858;
+}
+
+/* --- YHTENÄISTETTY TYÖKOKEMUS & KOULUTUS (Symmetria) --- */
+.job-entry {
+    margin-bottom: 24px;
+}
+
+.job-entry:last-of-type {
+    margin-bottom: 0;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 5px 15px;
+    margin-bottom: 4px;
+}
+
+/* Otsikot (Rooli / Tutkinto) */
+.job-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    flex: 1 1 auto;
+}
+
+/* Yrityksen tai oppilaitoksen nimen korostus */
+.job-company {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Päivämääräpillerit (Samanlaiset molemmissa) */
+.job-date {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    background-color: var(--bg-badge);
+    padding: 3px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+/* Alatiedot (Paikkakunta / Tarkennus) */
+.job-sub-info {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 2px;
+}
+
+/* --- TAIDOT JA RUUDUKKO (Skills Grid) --- */
+.skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skill-category {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+}
+
+.skill-category:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.skill-label {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* --- MOBIILI-OPTIMOINTI (Responsiivisuus) --- */
+@media (max-width: 600px) {
+    .cv-card {
+        padding: 30px 20px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    .job-date {
+        margin-top: 2px;
+    }
+    .skill-category {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}
+
+/* --- TULOSTUS- JA PDF-OPTIMOINTI (Print) --- */
+@media print {
+    body {
+        background-color: #ffffff;
+        padding: 0;
+    }
+    .cv-card {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+    }
+    .job-date {
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        font-weight: 700;
+    }
+    .contact-info {
+        background-color: #f8f9fa;
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--primary-color);
+    }
+    .skill-category {
+        border-bottom-style: solid;
+    }
+}
