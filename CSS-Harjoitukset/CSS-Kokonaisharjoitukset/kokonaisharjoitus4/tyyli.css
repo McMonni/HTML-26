@@ -1,0 +1,196 @@
+css
+/* ==========================================
+   OSA 3 & 4: Box Model nollaukset ja piilottaminen
+   ========================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Osa 4: Elementtien piilottamisen eri tavat */
+[hidden] {
+    display: none; /* Poistaa elementin kokonaan normaalivirrasta ja näkyvistä */
+}
+
+.is-invisible {
+    visibility: hidden; /* Piilottaa elementin visuaalisesti, mutta varaa sille edelleen tilan layoutissa */
+}
+
+.is-transparent {
+    opacity: 0; /* Tekee elementistä läpinäkyvän, elementti pysyy interaktiivisena (esim. klikattavana) */
+}
+
+/* ==========================================
+   OSA 1 & 2: Perustyylit ja Valitsimet
+   ========================================== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #f1f5f9;
+}
+
+h1, h2, h3 {
+    color: #312e81;
+}
+
+a {
+    color: #5b21b6;
+}
+
+.site-header, main, .site-footer {
+    width: min(100% - 2rem, 72rem);
+    margin-inline: auto;
+    padding-block: 1.5rem;
+}
+
+/* Korttikomponentti */
+.card {
+    min-width: 0;
+    max-width: 32rem;
+    margin-block: 1.5rem;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#top {
+    border-bottom: 3px solid #8b5cf6;
+}
+
+/* ==========================================
+   OSA 4: Display ja normaalivirta (Uusi aihe)
+   ========================================== */
+
+/* Muutetaan luonnostaan inline-muotoiset brändilinkki ja painike inline-blockiksi,
+   jotta niille voidaan määrittää luotettavasti Box Modelin mukaiset pysty-paddingit ja marginaalit */
+.brand {
+    display: inline-block;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.button {
+    display: inline-block;
+    padding: .65rem 1.25rem;
+    color: #ffffff;
+    background-color: #6d28d9;
+    border: 2px solid #6d28d9;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Navigaatiolistan muotoilu riviksi ilman Flexboxia */
+.nav-list {
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Poistetaan oletuspallurat */
+}
+
+.nav-list li {
+    display: inline-block; /* Pakotetaan lista-alkiot pystysuunnan sijaan rinnakkain */
+    margin-inline-end: 1.25rem; /* Tehdään elementtien väliin rako oikealle puolelle */
+}
+
+/* display: flow-root luo uuden block formatting contextin (BFC).
+   Se estää lapsielementtien marginaalien valumisen lohkon ulkopuolelle (margin collapse) */
+.hero, .content-section {
+    width: min(100% - 2rem, 68rem);
+    margin-inline: auto;
+    display: flow-root; 
+}
+
+/* ==========================================
+   OSA 2: Kertausta - Selectorit ja Cascade
+   ========================================== */
+.card > .card__title {
+    margin-top: 0;
+}
+
+.card .card__text {
+    color: #475569;
+    max-height: 12rem;
+    overflow: auto;
+    overflow-wrap: anywhere;
+    margin-bottom: 1.5rem;
+}
+
+.card__title + .card__text {
+    font-weight: 500;
+}
+
+a[href^="#"] {
+    text-underline-offset: .2em;
+}
+
+.nav-list li:first-child {
+    font-weight: 700;
+}
+
+.button:hover {
+    background-color: #4c1d95;
+    border-color: #4c1d95;
+}
+
+.button:focus-visible, .help-button:focus-visible {
+    outline: 3px solid #0ea5e9;
+    outline-offset: 3px;
+}
+
+.card.card--featured {
+    border: 2px solid #8b5cf6;
+    background-color: #f5f3ff;
+}
+
+.card--featured::before {
+    content: "★ Suositus";
+    display: block; /* Varmistetaan että pseudo-elementti toimii omana rivinään otsikon yläpuolella */
+    color: #6d28d9;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.button--primary {
+    background-color: #312e81;
+    border-color: #312e81;
+}
+
+/* Saavutettavuus ja aputyökalut */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 1rem;
+    background: #6d28d9;
+    color: white;
+    padding: .5rem 1rem;
+    z-index: 100;
+}
+.skip-link:focus {
+    top: 1rem;
+}
+
+.help-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #312e81;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
