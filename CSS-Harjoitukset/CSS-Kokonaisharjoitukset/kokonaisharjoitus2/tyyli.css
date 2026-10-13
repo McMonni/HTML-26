@@ -1,0 +1,152 @@
+css
+/* ==========================================
+   OSA 1: CSS:n perusteet & Perustyylit
+   ========================================== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #f1f5f9;
+}
+
+h1, h2, h3 {
+    color: #312e81;
+}
+
+a {
+    color: #5b21b6;
+}
+
+/* Keskitys ilman Flexboxia max-widthilla */
+.site-header, main, .site-footer {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Korttikomponentti */
+.card {
+    margin-block: 1.5rem;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* ID-valitsin yläreunan korostukseen */
+#top {
+    border-bottom: 3px solid #8b5cf6;
+}
+
+/* Painikekomponentti perusmuodossaan */
+.button {
+    display: inline-block; /* Jotta padding ja margin toimivat oikein inline-elementillä */
+    padding: .65rem 1.25rem;
+    color: #ffffff;
+    background-color: #6d28d9;
+    border: 2px solid #6d28d9;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Saavutettavuus: Hyppylinkki piilossa, kunnes saa fokuksen */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #6d28d9;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+/* Apupainike ruudun alanurkassa */
+.help-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #312e81;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   OSA 2: Selectorit ja Cascade (Uusi aihe)
+   ========================================== */
+
+/* Lapsivalitsin (Lapsi > Vanhempi) - Nollaa vain suoraan kortin alla olevan otsikon ylämarginaalin */
+.card > .card__title {
+    margin-top: 0;
+    color: #1e1b4b;
+}
+
+/* Jälkeläisvalitsin (Välilyönti) */
+.card .card__text {
+    color: #475569;
+    margin-bottom: 1.5rem;
+}
+
+/* Seuraava sisarusvalitsin (+) - Jos otsikon jälkeen tulee suoraan teksti, tehdaan siitä paksumpi */
+.card__title + .card__text {
+    font-weight: 500;
+}
+
+/* Attribuuttivalitsin [attr^=val] - Valitsee sisäiset ankkurilinkit (alkavat #-merkillä) */
+a[href^="#"] {
+    text-underline-offset: .3em;
+    text-decoration-style: dashed;
+}
+
+/* Pseudo-luokat (Tilavalitsimet) */
+.nav-list li:first-child {
+    font-weight: 700;
+}
+
+/* Painikkeen hover-tila */
+.button:hover {
+    background-color: #4c1d95;
+    border-color: #4c1d95;
+    color: #ffffff;
+}
+
+/* Saavutettavuus: Selkeä fokus-tila näppäimistökäyttäjille ilman !importantia */
+.button:focus-visible, .help-button:focus-visible {
+    outline: 3px solid #0ea5e9;
+    outline-offset: 3px;
+}
+
+/* Kohdistettu/Suositeltu kortti (Yhdistelmävalitsin ja CSS-luokkien spesifisyysvoitto) */
+.card.card--featured {
+    border: 2px solid #8b5cf6;
+    background-color: #f5f3ff;
+}
+
+/* Pseudo-elementti (::before) suosituskortille */
+.card--featured::before {
+    content: "★ SUOSITUS";
+    display: inline-block;
+    color: #6d28d9;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+/* Aliluokka korvaa yleisen tyylin lähdejärjestyksen (Source Order) ansiosta */
+.button--primary {
+    background-color: #312e81;
+    border-color: #312e81;
+}
