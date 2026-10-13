@@ -1,0 +1,224 @@
+/* ==========================================
+   OSA 3 & 4: Box Model & Piilottaminen
+   ========================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+[hidden] {
+    display: none;
+}
+
+.is-invisible {
+    visibility: hidden;
+}
+
+.is-transparent {
+    opacity: 0;
+}
+
+/* ==========================================
+   OSA 1 & 2: Perustyylit ja Valitsimet
+   ========================================== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #f1f5f9;
+}
+
+h1, h2, h3 {
+    color: #312e81;
+}
+
+a {
+    color: #5b21b6;
+}
+
+.site-header, main, .site-footer {
+    width: min(100% - 2rem, 72rem);
+    margin-inline: auto;
+    padding-block: 1rem;
+}
+
+#top {
+    border-bottom: 3px solid #8b5cf6;
+}
+
+/* ==========================================
+   OSA 4: Display ja normaalivirta
+   ========================================== */
+.brand {
+    display: inline-block;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.button {
+    display: inline-block;
+    padding: .65rem 1.25rem;
+    color: #ffffff;
+    background-color: #6d28d9;
+    border: 2px solid #6d28d9;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-list li {
+    display: inline-block;
+    margin-inline-end: 1.25rem;
+}
+
+.hero, .content-section {
+    width: min(100% - 2rem, 68rem);
+    margin-inline: auto;
+    display: flow-root; 
+}
+
+/* ==========================================
+   OSA 5: Positionointi (Uusi aihe)
+   ========================================== */
+
+/* 1. Sticky-toiminto sivuston navigaatiopalkille.
+   Pysyy näkymän yläreunassa, kun sivua rullataan alaspäin. */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Nostetaan muiden sisältöjen yläpuolelle */
+    background-color: #f8fafc; /* Taustaväri peittää taustalle jäävän rullaavan sisällön */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* 2. Relative-asettelu kortille.
+   Toimii normaalivirrassa, mutta luo koordinaatiston (ankkurin) sisäiselle absoluuttiselle badgelle. */
+.card {
+    position: relative;
+    min-width: 0;
+    max-width: 32rem;
+    margin-block: 1.5rem;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* 3. Absolute-asettelu kortin numerotunnisteelle (Badge).
+   Irrotetaan normaalivirrasta ja sijoitetaan kortin oikeaan yläkulmaan .card-isännän suhteen. */
+.card__badge {
+    position: absolute;
+    inset: .75rem .75rem auto auto; /* top: 0.75rem, right: 0.75rem */
+    background-color: #e0e7ff;
+    color: #3730a3;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+}
+
+/* 4. Fixed-asettelu oikeassa alanurkassa kelluvalle apupainikkeelle.
+   Irrotetaan täysin normaalivirrasta ja lukitaan suhteessa selaimen viewportiin (ikkunaan). */
+.help-button {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 20; /* Korkeampi kuin .site-header, jotta pysyy aina päällimmäisenä */
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #312e81;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* 5. Static (Oletusasetus)
+   Kaikki muut elementit (kuten .card__title ja .card__text) ovat oletuksena static-tilassa,
+   eli ne noudattavat display-tyypin mukaista normaalia sivuvirtaa. */
+
+
+/* ==========================================
+   OSA 2: Kertausta - Selectorit ja Cascade
+   ========================================== */
+.card > .card__title {
+    margin-top: 0;
+}
+
+.card .card__text {
+    color: #475569;
+    max-height: 12rem;
+    overflow: auto;
+    overflow-wrap: anywhere;
+    margin-bottom: 1.5rem;
+}
+
+.card__title + .card__text {
+    font-weight: 500;
+}
+
+a[href^="#"] {
+    text-underline-offset: .2em;
+}
+
+.nav-list li:first-child {
+    font-weight: 700;
+}
+
+.button:hover {
+    background-color: #4c1d95;
+    border-color: #4c1d95;
+}
+
+.button:focus-visible, .help-button:focus-visible {
+    outline: 3px solid #0ea5e9;
+    outline-offset: 3px;
+}
+
+.card.card--featured {
+    border: 2px solid #8b5cf6;
+    background-color: #f5f3ff;
+}
+
+.card--featured::before {
+    content: "★ Suositus";
+    display: block;
+    color: #6d28d9;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.button--primary {
+    background-color: #312e81;
+    border-color: #312e81;
+}
+
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 1rem;
+    background: #6d28d9;
+    color: white;
+    padding: .5rem 1rem;
+    z-index: 100;
+}
+.skip-link:focus {
+    top: 1rem;
+}
