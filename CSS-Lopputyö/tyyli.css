@@ -1,0 +1,429 @@
+/* ==========================================
+   RAKENNENULLAUKSET & BOX MODEL
+   ========================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==========================================
+   BODY & YLEISET VÄRIT (Määrätään suoraan elementille)
+   ========================================== */
+html,body {
+    padding: 0;
+    margin: 0;
+    /* Moderni, jämäkkä ja erittäin luettava fonttipino */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    
+    /* ERITTÄIN VÄRIKÄS TAUSTA: Pehmeä laventelinpinkki */
+    background-color: #f5f3ff; 
+    /* Tekstin väri: Syvä violetinharmaa */
+    color: #2e2a53; 
+}
+
+/* Otsikoiden massiivisen paksut ja värikkäät tyylit */
+h1, h2, h3 {
+    color: #1e1b4b; /* Syvä mystinen violetti */
+    margin-top: 0;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+}
+
+/* Sivun päälohkojen leveydet ja keskitys */
+.site-header, main, .site-footer {
+    width: min(100% - 2rem, 72rem);
+    margin-inline: auto;
+}
+
+/* ==========================================
+   NAVIGAATIO 
+   ========================================== */
+.site-header {
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding-block: 1.25rem;
+    display: flow-root;
+    /* Paksu neon-pinkki / fuksia alareuna */
+    border-bottom: 5px solid #ff007f; 
+    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.05);
+}
+
+/* Brändinimi upealla liukuvärillä (Pinkistä sähkönsiniseen) */
+.brand {
+    display: inline-block;
+    font-weight: 900;
+    text-decoration: none;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: linear-gradient(to right, #ff007f, #8b5cf6, #00f0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-list li {
+    display: inline-block;
+    margin-inline-end: 0.75rem;
+}
+
+.nav-link {
+    display: inline-block;
+    color: #5a5286;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+}
+
+.nav-link:hover {
+    color: #ff007f;
+    background-color: rgba(255, 0, 127, 0.08); /* Kevyt pinkki hohtotausta */
+}
+
+/* Aktiivinen linkki saa sähkönsinisen korostuksen */
+.nav-link.is-active {
+    color: #1e1b4b;
+    background-color: rgba(0, 240, 255, 0.2);
+    border: 2px solid #00f0ff;
+}
+
+/* ==========================================
+   SISÄLTÖÖSIOT (Dynaamiset taustat)
+   ========================================== */
+.content-section {
+    margin-block: 3.5rem;
+    padding: 3rem 2.5rem;
+    background-color: #ffffff; /* Hohtavan valkoinen pohja */
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(76, 29, 149, 0.12);
+    border: 2px solid rgba(76, 29, 149, 0.08);
+    display: flow-root;
+}
+
+/* Vaihtoehtoinen värikäs osio (Syaani/Minttu-tausta) */
+.section--alternate {
+    background-color: #ecfeff;
+    border: 2px solid #a5f3fc;
+}
+
+.section-header p {
+    color: #5a5286;
+    font-size: 1.1rem;
+}
+
+/* Osio 1: Massiivisen värikäs Hero-alue (Kolmivärinen liukuväri) */
+.hero-section {
+    padding-block: 6rem;
+    background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #7c3aed 100%);
+    color: #ffffff;
+    border-radius: 20px;
+    margin-block-start: 1.5rem;
+    padding-inline: 3rem;
+    box-shadow: 0 20px 40px rgba(76, 29, 149, 0.25);
+    display: flow-root;
+}
+
+.hero-section h1 {
+    color: #ffffff;
+    font-size: 3.2rem;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Sähkönsininen neon-korostusteksti otsikon päällä */
+.eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    font-weight: 800;
+    color: #00f0ff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.hero-lead {
+    font-size: 1.3rem;
+    color: #e0e7ff;
+    margin-bottom: 2.5rem;
+}
+
+/* Osio 2: Kortit ja niiden Micro-interactionit */
+.card-list {
+    margin-block-start: 2rem;
+}
+
+.card {
+    position: relative;
+    max-width: 100%;
+    margin-block-end: 2rem;
+    padding: 3rem 2rem 2.5rem 2rem;
+    background-color: #fafafa;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Kortti nousee ja reunus muuttuu sähkönsiniseksi hoverissa */
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px rgba(76, 29, 149, 0.15);
+    border-color: #00f0ff; 
+}
+
+/* Suositeltu kortti loistaa lämpimän pinkkinä */
+.card.card--featured {
+    border: 3px solid #ff007f;
+    background-color: #fff1f2; 
+    box-shadow: 0 10px 25px rgba(255, 0, 127, 0.1);
+}
+
+.card--featured::before {
+    content: "★ SUOSITELTU KOMPONENTTI";
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #ff007f;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+/* Tunnistenumero (Badge) oikeassa yläkulmassa tummalla pohjalla */
+.card__badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: linear-gradient(45deg, #1e1b4b, #4c1d95);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+}
+
+.card__text {
+    margin-bottom: 2rem;
+    color: #5a5286;
+}
+
+/* ==========================================
+   LOMAKE (Värikäs hohto focus-tilassa)
+   ========================================== */
+.form-container {
+    max-width: 36rem;
+    margin-inline: auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #1e1b4b;
+}
+
+.required {
+    color: #f43f5e; /* Kirkas ruusunpunainen tähdelle */
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 0.9rem;
+    font-family: inherit;
+    font-size: 1rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #1e1b4b;
+    transition: all 0.25s ease;
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #ff007f;
+    box-shadow: 0 0 0 4px rgba(255, 0, 127, 0.25);
+}
+
+.form-group--checkbox {
+    margin-block: 2rem;
+}
+
+.form-checkbox {
+    display: inline-block;
+    width: 1.35rem;
+    height: 1.35rem;
+    vertical-align: middle;
+    margin-inline-end: 0.75rem;
+    accent-color: #ff007f; /* Värjää ruudun pinkiksi */
+}
+
+.form-label-checkbox {
+    display: inline;
+    font-size: 0.95rem;
+    font-weight: 600;
+    vertical-align: middle;
+    color: #2e2a53;
+}
+
+/* ==========================================
+   PAINIKKEET (3D- ja Cyber-efektit)
+   ========================================== */
+.button {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #ff007f;
+    background-color: transparent;
+    border: 3px solid #ff007f; 
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #1e1b4b; /* Retro 3D-varjo alareunassa */
+    transform: translateY(-2px);
+    transition: all 0.25s ease;
+}
+
+.button:hover {
+    background-color: #ff007f;
+    color: #ffffff;
+    box-shadow: 0 0px 0 #1e1b4b;
+    transform: translateY(2px);
+}
+
+.button--primary {
+    background-color: #ff007f;
+    color: #ffffff;
+    box-shadow: 0 4px 0 #312e81;
+}
+
+.button--primary:hover {
+    background-color: #e60072;
+    border-color: #e60072;
+    box-shadow: 0 0px 0 #312e81;
+}
+
+/* Korallioranssi lähetyspainike */
+.button--submit {
+    width: 100%;
+    background-color: #ff5e00;
+    border-color: #ff5e00;
+    color: #ffffff;
+    box-shadow: 0 4px 0 #9a3412;
+}
+
+.button--submit:hover {
+    background-color: #e05300;
+    border-color: #e05300;
+    box-shadow: 0 0px 0 #9a3412;
+}
+
+/* Saavutettavuus: Sähkönsininen loiste näppäimistökäyttäjille */
+.button:focus-visible, .help-button:focus-visible, .nav-link:focus-visible, a:focus-visible {
+    outline: 4px solid #00f0ff;
+    outline-offset: 4px;
+}
+
+/* Pyöreä kelluva apupainike (Fuksia-oranssi gradientti) */
+.help-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 200;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff007f, #ff5e00);
+    color: #ffffff;
+    border: none;
+    font-weight: 900;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255, 0, 127, 0.4);
+    transition: all 0.25s ease;
+}
+
+.help-button:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 12px 30px rgba(255, 0, 127, 0.6);
+}
+
+/* ==========================================
+   SAAVUTETTAVUUSHYPPY (Skip Link)
+   ========================================== */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background-color: #1e1b4b;
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    z-index: 1000;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #00f0ff;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+/* ==========================================
+   RESPONSIIVISUUS (Media Queries Box Modelilla)
+   ========================================== */
+@media (min-width: 48rem) {
+    .brand {
+        float: left;
+        margin-bottom: 0;
+    }
+    
+    .site-header nav {
+        float: right;
+        margin-block-start: 0.3rem;
+    }
+
+    .card {
+        display: inline-block;
+        width: 31%;
+        margin-inline-end: 2%;
+        vertical-align: top;
+    }
+
+    .card:last-child {
+        margin-inline-end: 0;
+    }
+    
+    .button--submit {
+        width: auto;
+    }
+}
+
+/* Alapalkki */
+.site-footer {
+    text-align: center;

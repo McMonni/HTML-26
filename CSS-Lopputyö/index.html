@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderni Komponenttisivu | CSS-projekti - Juuso Kilpeläinen</title>
+    <link rel="stylesheet" href="tyyli.css">
+</head>
+<body>
+    <!-- Saavutettavuus: Hyppylinkki -->
+    <a class="skip-link" href="#main-content">Siirry suoraan pääsisältöön</a>
+
+    <!-- Navigaatio -->
+    <header class="site-header" id="top">
+        <a class="brand" href="index.html">CSS-Projekti</a>
+        <nav aria-label="Päänavigaatio">
+            <ul class="nav-list">
+                <li><a href="index.html" aria-current="page" class="nav-link is-active">Etusivu</a></li>
+                <li><a href="#features" class="nav-link">Palvelut</a></li>
+                <li><a href="#about" class="nav-link">Tietoa</a></li>
+                <li><a href="#contact" class="nav-link">Ota yhteyttä</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- OSIO 1: Hero-osion esittely -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <span class="eyebrow">Kokonaisharjoitus Ammattilaisille</span>
+                <h1>Älykkäät komponentit ilman Flexboxia</h1>
+                <p class="hero-lead">Tämä sivusto on rakennettu puhtaasti CSS:n normaalivirtaa, asemointia ja Box Modelia kunnioittaen. Layout joustaa saumattomasti ruudun koosta riippumatta.</p>
+                <a class="button button--primary" href="#features">Tutustu palveluihin</a>
+            </div>
+        </section>
+
+        <!-- OSIO 2: Palvelukortit -->
+        <section class="content-section" id="features">
+            <div class="section-header">
+                <h2>Keskeiset ominaisuudet</h2>
+                <p>Jokainen komponentti on suunniteltu itsenäiseksi ja saavutettavaksi kokonaisuudeksi.</p>
+            </div>
+            
+            <div class="card-list">
+                <article class="card">
+                    <span class="card__badge">01</span>
+                    <h3 class="card__title">Design Tokenit</h3>
+                    <p class="card__text">Kaikki värit, välit, pyöristykset ja varjot on sidottu globaaleihin CSS-muuttujiin keskitettyä hallintaa varten.</p>
+                    <a class="button" href="#">Lue lisää</a>
+                </article>
+
+                <article class="card card--featured">
+                    <span class="card__badge">02</span>
+                    <h3 class="card__title">Saavutettavuus</h3>
+                    <p class="card__text">Sivusto tukee täysin näppäimistökäyttöä, sisältää selkeät fokustilat ja loogisen HTML5-rakennehierarkian.</p>
+                    <a class="button" href="#">Lue lisää</a>
+                </article>
+
+                <article class="card">
+                    <span class="card__badge">03</span>
+                    <h3 class="card__title">Virranhallinta</h3>
+                    <p class="card__text">Lohkoelementtien marginaalien sulautuminen on estetty tyylikkäästi modernilla display: flow-root -tekniikalla.</p>
+                    <a class="button" href="#">Lue lisää</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- OSIO 3: Tietoa meistä -tekstiosio -->
+        <section class="content-section section--alternate" id="about">
+            <div class="about-box">
+                <h2>Rakennettu kestämään kulutusta</h2>
+                <p>Normaalivirrassa (Normal Flow) pysyvät elementit takaavat sen, että teksti ja sisältö eivät koskaan valu päällekkäin tai karkaa näkymän ulkopuolelle, vaikka käyttäjä suurentaisi selaimen tekstikokoa reilustikin.</p>
+                <p>CSS-muuttujien ansiosta sivuston teemoitus tai brändivärien vaihtaminen onnistuu sekunneissa vain muutaman avainarvon päivityksellä root-tasolle.</p>
+            </div>
+        </section>
+
+        <!-- OSIO 4: Lomakeosio -->
+        <section class="content-section" id="contact">
+            <div class="form-container">
+                <h2>Ota yhteyttä tiimiin</h2>
+                <p>Jätä viesti alta, niin palaamme asiaan mahdollisimman pian.</p>
+                
+                <form action="#" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="user-name" class="form-label">Nimi <span class="required" aria-hidden="true">*</span></label>
+                        <input type="text" id="user-name" name="name" class="form-input" required placeholder="Matti Meikäläinen">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-email" class="form-label">Sähköpostiosoite <span class="required" aria-hidden="true">*</span></label>
+                        <input type="email" id="user-email" name="email" class="form-input" required placeholder="matti@esimerkki.fi">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-message" class="form-label">Viesti <span class="required" aria-hidden="true">*</span></label>
+                        <textarea id="user-message" name="message" class="form-textarea" rows="5" required placeholder="Kirjoita viestisi tähän..."></textarea>
+                    </div>
+
+                    <div class="form-group form-group--checkbox">
+                        <input type="checkbox" id="user-privacy" name="privacy" class="form-checkbox" required>
+                        <label for="user-privacy" class="form-label-checkbox">Hyväksyn tietojeni käsittelyn tietosuojaselosteen mukaisesti</label>
+                    </div>
+
+                    <button type="submit" class="button button--primary button--submit">Lähetä viesti</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Kiinteät elementit -->
+    <button class="help-button" type="button" aria-label="Avaa ohjejärjestelmä">?</button>
+
+    <footer class="site-footer">
+        <p>CSS-kokonaisharjoitus · Juuso Kilpeläinen KEUDA 2026</p>
+    </footer>
+</body>
