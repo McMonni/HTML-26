@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Käyttäjätilan ja oikeuksien tarkistus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            padding: 20px;
+            max-width: 450px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .tila-laatikko {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            border-left: 5px solid;
+        }
+        /* Tyylit kun ehto on tosi */
+        .kylla {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+        /* Tyylit kun ehto on epätosi */
+        .ei {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Järjestelmän tila</h2>
+    
+    <!-- Laatikko 1: Kirjautumisen tila -->
+    <div id="kirjautumis-tila" class="tila-laatikko"></div>
+
+    <!-- Laatikko 2: Muokkausoikeuden tila -->
+    <div id="muokkaus-tila" class="tila-laatikko"></div>
+
+    <script>
+        // Testiarvot (muuta näitä testataksesi)
+        let onKirjautunut = true;
+        let onAdmin = false;
+        let onOpettaja = true;
+
+        // Haetaan HTML-elementit
+        const kirjautumisElementti = document.getElementById("kirjautumis-tila");
+        const muokkausElementti = document.getElementById("muokkaus-tila");
+
+        // 1. TARKISTETAAN KIRJAUTUMINEN
+        if (onKirjautunut) {
+            kirjautumisElementti.innerHTML = "✓ Olet kirjautunut sisään";
+            kirjautumisElementti.className = "tila-laatikko kylla";
+        } else {
+            kirjautumisElementti.innerHTML = "✗ Et ole kirjautunut sisään. Kirjaudu sisään!";
+            kirjautumisElementti.className = "tila-laatikko ei";
+        }
+
+        // 2. TARKISTETAAN MUOKKAUSOIKEUS
+        // Vaatii kirjautumisen JA jommankumman roolin
+        if (onKirjautunut && (onAdmin || onOpettaja)) {
+            muokkausElementti.innerHTML = "✓ Muokkaus sallittu (Rooli: " + (onAdmin ? "Admin" : "Opettaja") + ")";
+            muokkausElementti.className = "tila-laatikko kylla";
+        } else {
+            muokkausElementti.innerHTML = "✗ Muokkaus evätty (Ei riittäviä oikeuksia)";
+            muokkausElementti.className = "tila-laatikko ei";
+        }
+    </script>
+
+</body>
+</html>

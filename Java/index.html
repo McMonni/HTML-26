@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iän luokittelu testiarvolla</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            padding: 20px;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #333;
+        }
+        .tulos-laatikko {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-left: 5px solid #007BFF;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Iän luokittelutesti</h2>
+    <p>Ohjelma luokittelee koodiin määritetyn <code>let ika</code> -muuttujan arvon.</p>
+
+    <div class="tulos-laatikko" id="tulos-alue">
+        <!-- JavaScript tulostaa vastauksen tähän -->
+    </div>
+
+    <script>
+        // Luodaan muuttuja ja annetaan sille testiarvo
+        let ika = 25; 
+
+        // Haetaan HTML-elementti, johon vastaus tulostetaan
+        const tulosAlue = document.getElementById("tulos-alue");
+
+        // Suoritetaan luokittelu
+        if (ika < 0) {
+            tulosAlue.innerHTML = "<strong>Testattu ikä:</strong> " + ika + "<br>Virhe: Ikä ei voi olla negatiivinen.";
+            tulosAlue.style.borderLeftColor = "red";
+        } else if (ika <= 17) {
+            tulosAlue.innerHTML = "<strong>Testattu ikä:</strong> " + ika + "<br>Ikäluokka: Lapsi / Nuori";
+        } else if (ika <= 64) {
+            tulosAlue.innerHTML = "<strong>Testattu ikä:</strong> " + ika + "<br>Ikäluokka: Aikuinen";
+        } else {
+            tulosAlue.innerHTML = "<strong>Testattu ikä:</strong> " + ika + "<br>Ikäluokka: Seniori";
+        }
+    </script>
+
+</body>
+</html>
