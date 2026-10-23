@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kertotaulu for-silmukalla</title>
+    <style>
+        body {
+            font-family: monospace;
+            margin: 50px;
+            padding: 20px;
+            max-width: 250px;
+            border: 2px solid #333;
+            background-color: #fff;
+        }
+        .rivi {
+            font-size: 1.3em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Kertotaulu (7)</h3>
+    <div id="tuloste"></div>
+
+    <script>
+        // Määritetään vakio luku 7
+        const luku = 7;
+        const tulosteElementti = document.getElementById("tuloste");
+
+        // For-silmukka arvoilla 1-10
+        for (let i = 1; i <= 10; i++) {
+            let tulo = i * luku;
+            
+            // Tulostetaan muodossa: i x luku = tulo
+            tulosteElementti.innerHTML += `<div class="rivi">${i} x ${luku} = ${tulo}</div>`;
+        }
+    </script>
+
+</body>
+</html>
