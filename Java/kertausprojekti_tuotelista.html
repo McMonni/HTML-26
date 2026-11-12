@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuotesovellus</title>
+  <script src="kertausprojekti_tuotelista.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+    .controls { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+    form { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    input, button { padding: 0.5rem; font-size: 1rem; }
+    #statusMessage { color: #15803d; font-weight: 600; min-height: 1.5rem; }
+    #productList { display: grid; gap: 1rem; }
+    
+    /* Tuotekortin perustyyli ja suosikkitila */
+    .product-card {
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .product-card.favorite {
+      border-color: #f59e0b;
+      background-color: #fef3c7;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <h1>Tuoteluettelo</h1>
+
+  <div class="controls">
+    <!-- Hakukenttä -->
+    <label>
+      Hae tuotteita:
+      <input type="search" id="searchInput" placeholder="Kirjoita tuotteen nimi...">
+    </label>
+
+    <!-- Lomake uuden tuotteen lisäämiseen (huomaa name-attribuutit FormDataa varten) -->
+    <form id="productForm">
+      <input type="text" name="title" placeholder="Tuotteen nimi" required>
+      <input type="number" name="price" placeholder="Hinta (€)" step="0.01" required>
+      <button type="submit">Lisää tuote</button>
+    </form>
+
+    <!-- Saavutettava statusviesti ruudunlukijoille ja käyttäjille -->
+    <div id="statusMessage" role="status" aria-live="polite"></div>
+  </div>
+
+  <!-- Tuotekorttien kontti (event delegation) -->
+  <div id="productList">
+    <div class="product-card">
+      <div>
+        <h3 class="product-title">Kahvipaketti</h3>
+        <p>6.90 €</p>
+      </div>
+      <button type="button" data-action="favorite">Suosikki</button>
+    </div>
+
+    <div class="product-card">
+      <div>
+        <h3 class="product-title">Kuulokkeet</h3>
+        <p>49.90 €</p>
+      </div>
+      <button type="button" data-action="favorite">Suosikki</button>
+    </div>
+  </div>
+
+</body>
+</html>
