@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tehtävälista</title>
+  <script src="todo.js" defer></script>
+  <style>
+    /* Tyyli valmiiksi merkitylle tehtävälle */
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    button {
+      margin-left: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="todoForm">
+    <input type="text" id="todoInput" placeholder="Kirjoita uusi tehtävä..." required>
+    <button type="submit">Lisää</button>
+  </form>
+
+  <ul id="todoList"></ul>
+
+</body>
+</html>

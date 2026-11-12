@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tyylikäs laskuri</title>
+  <style>
+    /* Koko sivun keskitys ja taustaväri */
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Laskurin valkoinen kortti */
+    .counter-card {
+      background-color: #ffffff;
+      padding: 2rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* Numeron tyylit */
+    #count {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1f2937;
+      min-width: 60px;
+      text-align: center;
+      user-select: none; /* Estää tekstin vahingossa maalaamisen */
+    }
+
+    /* Painikkeiden perustyylit */
+    button {
+      width: 52px;
+      height: 52px;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: #3b82f6;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    /* Hover-efekti, kun painike on käytössä */
+    button:hover:not(:disabled) {
+      background-color: #2563eb;
+    }
+
+    /* Klikkausefekti */
+    button:active:not(:disabled) {
+      transform: scale(0.94);
+    }
+
+    /* Disabloidun painikkeen ulkoasu */
+    button:disabled {
+      background-color: #d1d5db;
+      color: #9ca3af;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Korttikontti laskurille -->
+  <div class="counter-card">
+    <button id="minus">−</button>
+    <span id="count">0</span>
+    <button id="plus">+</button>
+  </div>
+
+  <!-- JavaScript-toiminnallisuus -->
+  <script>
+    const minusBtn = document.getElementById('minus');
+    const plusBtn = document.getElementById('plus');
+    const countSpan = document.getElementById('count');
+
+    let count = 0;
+    minusBtn.disabled = true;
+
+    function updateDisplay() {
+      countSpan.textContent = count;
+      minusBtn.disabled = count <= 0;
+    }
+
+    plusBtn.addEventListener('click', () => {
+      count++;
+      updateDisplay();
+    });
+
+    minusBtn.addEventListener('click', () => {
+      if (count > 0) {
+        count--;
+        updateDisplay();
+      }
+    });
+  </script>
+
+</body>
+</html>
