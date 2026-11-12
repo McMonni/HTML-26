@@ -5,10 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nimen esikatselu</title>
   <script src="live.js" defer></script>
+  <style>
+    /* Sivun tausta ja keskitys */
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    /* Korttimainen ulkoasu suoraan body-elementin lapsille */
+    body > * {
+      width: 100%;
+      max-width: 380px;
+      background-color: #ffffff;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    /* Yläosa: syöttökenttä */
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #4b5563;
+      padding: 2rem 2rem 1.25rem;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    input {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    /* Keskiosa: tervehdys */
+    p:first-of-type {
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      word-break: break-word;
+    }
+
+    #preview {
+      color: #2563eb;
+    }
+
+    /* Alaosa: merkkilaskuri */
+    p:last-of-type {
+      font-size: 0.85rem;
+      color: #6b7280;
+      text-align: right;
+      padding: 0.5rem 2rem 2rem;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.06);
+    }
+
+    #charCount {
+      font-weight: 600;
+      color: #374151;
+    }
+  </style>
 </head>
 <body>
 
-  <label>Nimi <input id="name" maxlength="30"></label>
+  <label>Nimi <input id="name" maxlength="30" placeholder="Kirjoita nimesi..."></label>
   <p>Hei, <span id="preview">vieras</span>!</p>
   <p>Merkkejä: <span id="charCount">0</span> / 30</p>
 
