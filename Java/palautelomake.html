@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palautelomake</title>
+  <link rel="stylesheet" href="palautelomake.css">
+</head>
+<body>
+
+  <main>
+    <h1>Anna palautetta</h1>
+    <p class="subtitle">Yhdistelmälomake eri lomakekontrolleilla ja yhteenvedolla.</p>
+
+    <form id="feedback-form" novalidate>
+      
+      <!-- 1. Select-aihe -->
+      <div class="form-group">
+        <label for="topic">Palautteen aihe *</label>
+        <select id="topic" name="topic" required aria-describedby="topic-error">
+          <option value="">-- Valitse aihe --</option>
+          <option value="Asiakaspalvelu">Asiakaspalvelu</option>
+          <option value="Tuotteet ja palvelut">Tuotteet ja palvelut</option>
+          <option value="Verkkosivujen toimivuus">Verkkosivujen toimivuus</option>
+          <option value="Muu palaute">Muu palaute</option>
+        </select>
+        <span class="error-message" id="topic-error" aria-live="polite"></span>
+      </div>
+
+      <!-- 2. Radio-arvosana -->
+      <fieldset class="form-group" id="rating-group" aria-describedby="rating-error">
+        <legend>Arvosana (1–5) *</legend>
+        <div class="radio-options">
+          <label class="radio-label">
+            <input type="radio" name="rating" value="1" required> 1
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="rating" value="2"> 2
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="rating" value="3"> 3
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="rating" value="4"> 4
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="rating" value="5"> 5
+          </label>
+        </div>
+        <span class="error-message" id="rating-error" aria-live="polite"></span>
+      </fieldset>
+
+      <!-- 3. Textarea-viesti ja merkkilaskuri -->
+      <div class="form-group">
+        <div class="label-row">
+          <label for="message">Palauteviesti *</label>
+          <span id="char-counter" class="char-counter" aria-live="polite">0 / 300 merkkiä (väh. 20)</span>
+        </div>
+        <textarea 
+          id="message" 
+          name="message" 
+          rows="4" 
+          maxlength="300" 
+          required 
+          placeholder="Kirjoita palautteesi tähän..."
+          aria-describedby="char-counter message-error"
+        ></textarea>
+        <span class="error-message" id="message-error" aria-live="polite"></span>
+      </div>
+
+      <!-- 4. Checkbox yhteydenottoluvasta -->
+      <div class="form-group">
+        <div class="checkbox-wrapper">
+          <input 
+            type="checkbox" 
+            id="contact-permission" 
+            name="contactPermission" 
+            value="Kyllä"
+            aria-describedby="contact-hint"
+          >
+          <label for="contact-permission">Minuun saa ottaa yhteyttä palautteeseen liittyen</label>
+        </div>
+        <span id="contact-hint" class="hint-text">Valinnainen: valitse tämä, jos toivot vastausta.</span>
+      </div>
+
+      <button type="submit">Lähetä palaute</button>
+    </form>
+
+    <!-- Yhteenveto lähetetyistä tiedoista -->
+    <section id="summary-section" class="summary-box hidden" aria-live="polite">
+      <h2>Lähetetyn palautteen yhteenveto</h2>
+      <dl id="summary-list" class="summary-list"></dl>
+    </section>
+  </main>
+
+  <script src="palautelomake.js"></script>
+</body>
+</html>

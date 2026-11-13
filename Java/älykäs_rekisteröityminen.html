@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Käyttäjätilin rekisteröinti</title>
+  <link rel="stylesheet" href="älykäs.css">
+</head>
+<body>
+
+  <main>
+    <h1>Luo käyttäjätili</h1>
+    <p class="subtitle">Täytä kaikki pakolliset kentät jatkaaksesi.</p>
+
+    <!-- Virheyhteenveto näytetään lähetysyrityksen yhteydessä, jos virheitä löytyy -->
+    <div id="error-summary" class="error-summary hidden" role="alert" tabindex="-1">
+      <h2>Lomakkeessa on vielä korjattavaa:</h2>
+      <ul id="error-summary-list"></ul>
+    </div>
+
+    <!-- Onnistumisviesti -->
+    <div id="success-message" class="success-message hidden" role="status" aria-live="polite"></div>
+
+    <form id="signup-form" novalidate>
+      
+      <!-- Nimi -->
+      <div class="form-group">
+        <label for="fullName">Nimi *</label>
+        <input 
+          type="text" 
+          id="fullName" 
+          name="fullName" 
+          required 
+          minlength="2" 
+          maxlength="50"
+          autocomplete="name"
+          aria-describedby="fullName-error"
+        >
+        <span class="error-message" id="fullName-error" aria-live="polite"></span>
+      </div>
+
+      <!-- Sähköposti -->
+      <div class="form-group">
+        <label for="email">Sähköpostiosoite *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required
+          autocomplete="email"
+          aria-describedby="email-error"
+        >
+        <span class="error-message" id="email-error" aria-live="polite"></span>
+      </div>
+
+      <!-- Salasana + reaaliaikainen palaute -->
+      <div class="form-group">
+        <label for="password">Salasana *</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          required 
+          minlength="8"
+          autocomplete="new-password"
+          aria-describedby="password-rules password-error"
+        >
+        
+        <ul id="password-rules" class="password-rules" aria-live="polite">
+          <li id="rule-length" data-valid="false">Vähintään 8 merkkiä</li>
+          <li id="rule-upper" data-valid="false">Vähintään yksi iso kirjain (A–Ö)</li>
+          <li id="rule-number" data-valid="false">Vähintään yksi numero (0–9)</li>
+        </ul>
+
+        <span class="error-message" id="password-error" aria-live="polite"></span>
+      </div>
+
+      <!-- Salasanan vahvistus -->
+      <div class="form-group">
+        <label for="confirmPassword">Vahvista salasana *</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          name="confirmPassword" 
+          required
+          autocomplete="new-password"
+          aria-describedby="confirmPassword-error"
+        >
+        <span class="error-message" id="confirmPassword-error" aria-live="polite"></span>
+      </div>
+
+      <button type="submit">Rekisteröidy</button>
+    </form>
+  </main>
+
+  <script src="älykäs.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+main {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 460px;
+}
+
+h1 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  margin: 0 0 1.5rem 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Virheyhteenveto */
+.error-summary {
+  background-color: #fef2f2;
+  border: 2px solid #dc2626;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: #991b1b;
+}
+
+.error-summary h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.error-summary ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.error-summary a {
+  color: #991b1b;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Onnistumisviesti */
+.success-message {
+  background-color: #dcfce7;
+  border: 2px solid #22c55e;
+  color: #166534;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.65rem;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+input[aria-invalid="true"] {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+/* Reaaliaikaiset salasanasäännöt */
+.password-rules {
+  list-style: none;
+  padding: 0.65rem 0.75rem;
+  margin: 0.5rem 0 0 0;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.85rem;
+}
+
+.password-rules li {
+  margin-bottom: 0.25rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.password-rules li:last-child {
+  margin-bottom: 0;
+}
+
+.password-rules li::before {
+  content: "○";
+  font-weight: bold;
+}
+
+.password-rules li[data-valid="true"] {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.password-rules li[data-valid="true"]::before {
+  content: "✓";
+}
+
+.error-message {
+  display: block;
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+  min-height: 1.1em;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}

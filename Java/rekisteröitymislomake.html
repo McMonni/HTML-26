@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekisteröitymislomake</title>
+  <link rel="stylesheet" href="lomake.css">
+</head>
+<body>
+
+  <main>
+    <h1>Luo käyttäjätili</h1>
+    
+    <!-- novalidate estää selaimen oletuskuplat, jotta voimme näyttää omat kenttäkohtaiset virheet -->
+    <form id="register-form" novalidate>
+      
+      <!-- Käyttäjänimi -->
+      <div class="form-group">
+        <label for="username">Käyttäjänimi *</label>
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          required 
+          minlength="3" 
+          maxlength="20"
+          aria-describedby="username-error"
+        >
+        <span class="error-message" id="username-error" aria-live="polite"></span>
+      </div>
+
+      <!-- Sähköposti -->
+      <div class="form-group">
+        <label for="email">Sähköpostiosoite *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required
+          aria-describedby="email-error"
+        >
+        <span class="error-message" id="email-error" aria-live="polite"></span>
+      </div>
+
+      <!-- Salasana -->
+      <div class="form-group">
+        <label for="password">Salasana *</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          required 
+          minlength="8"
+          aria-describedby="password-error"
+        >
+        <span class="error-message" id="password-error" aria-live="polite"></span>
+      </div>
+
+      <!-- Ehtojen hyväksyminen -->
+      <div class="form-group checkbox-group">
+        <div class="checkbox-wrapper">
+          <input 
+            type="checkbox" 
+            id="terms" 
+            name="terms" 
+            value="accepted" 
+            required
+            aria-describedby="terms-error"
+          >
+          <label for="terms">Hyväksyn käyttöehdot ja tietosuojaselosteen *</label>
+        </div>
+        <span class="error-message" id="terms-error" aria-live="polite"></span>
+      </div>
+
+      <button type="submit">Rekisteröidy</button>
+      
+      <!-- Yleinen onnistumisviesti -->
+      <div id="form-success" class="success-message" role="status" aria-live="polite"></div>
+    </form>
+  </main>
+
+  <script src="rekisteröitymislomake.js"></script>
+</body>
+</html>
