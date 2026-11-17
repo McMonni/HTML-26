@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tehtävienhallinta – Fetch & DOM</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --danger: #dc2626;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --border: #e2e8f0;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.5;
+    }
+    .panel {
+      background: var(--card);
+      padding: 1.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    input, select, button {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    input[type="search"], input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+    }
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    button:hover { opacity: 0.9; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button.secondary { background-color: #64748b; }
+    
+    /* Status-alueet */
+    .status-box {
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .status-box.visible { display: block; }
+    .loading { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .error { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
+    .empty { background: #f1f5f9; color: #475569; text-align: center; }
+
+    /* Lista */
+    ul { list-style: none; padding: 0; margin: 0; }
+    li {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .badge {
+      font-size: 0.8rem;
+      background: #e2e8f0;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .done { text-decoration: line-through; color: #94a3b8; }
+    
+    /* Ruudunlukijoille tarkoitettu piilotettu luokka */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tehtävienhallinta</h1>
+
+  <!-- Saavutettava live-alue ilmoituksille -->
+  <div id="liveRegion" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Lomake uuden tehtävän lisäämiseen (POST) -->
+  <section class="panel">
+    <h2>Lisää uusi tehtävä</h2>
+    <form id="addForm" class="controls">
+      <label for="newTitle" class="sr-only">Tehtävän nimi</label>
+      <input type="text" id="newTitle" placeholder="Kirjoita uusi tehtävä..." required>
+      <button type="submit" id="submitBtn">Lisää</button>
+    </form>
+  </section>
+
+  <!-- Haku ja suodatus -->
+  <section class="panel">
+    <div class="controls">
+      <label for="searchInput" class="sr-only">Hae tehtäviä</label>
+      <input type="search" id="searchInput" placeholder="Hae otsikolla tai tekijällä...">
+      
+      <label for="userFilter" class="sr-only">Suodata käyttäjän mukaan</label>
+      <select id="userFilter">
+        <option value="all">Kaikki käyttäjät</option>
+      </select>
+
+      <button type="button" id="refreshBtn" class="secondary" title="Tyhjennä välimuisti ja päivitä">Päivitä</button>
+    </div>
+  </section>
+
+  <!-- Tilaviestit: Loading, Error, Empty -->
+  <div id="loadingState" class="status-box loading">Ladataan tietoja palvelimelta...</div>
+  
+  <div id="errorState" class="status-box error">
+    <p id="errorMessage" style="margin: 0 0 0.5rem 0;">Tapahtui virhe.</p>
+    <button type="button" id="retryBtn">Yritä uudelleen</button>
+  </div>
+
+  <div id="emptyState" class="status-box empty">Hakuehdoilla ei löytynyt yhtään tehtävää.</div>
+
+  <!-- Varsinainen data renderöidään tähän -->
+  <ul id="todoList"></ul>
+
+  <!-- Ulkoinen skriptitiedosto -->
+  <script src="app.js" defer></script>
+</body>
+</html>
