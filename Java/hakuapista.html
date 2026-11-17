@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Käyttäjähaku</title>
+  <style>
+    /* Kevyt perusasettelu korteille */
+    #kortti-alue {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .kortti {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      background-color: #f9f9f9;
+    }
+    .kortti h3 {
+      margin: 0 0 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hae käyttäjiä</h1>
+
+  <!-- Hakulomake -->
+  <form id="hakulomake">
+    <input type="text" id="hakukentta" placeholder="Etsi nimellä (esim. John)..." />
+    <button type="submit">Hae</button>
+  </form>
+
+  <!-- Tilailmoitukset ja uudelleenyrityspainike -->
+  <div id="tila-alue" style="margin-top: 16px;"></div>
+  <button id="yrita-uudelleen" style="display: none; margin-top: 8px;">Yritä uudelleen</button>
+
+  <!-- Hakutulokset kortteina -->
+  <div id="kortti-alue"></div>
+
+  <script src="hakuapista.js"></script>
+</body>
+</html>

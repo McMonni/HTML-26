@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Lisää käyttäjä (POST)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 500px;
+      margin: 24px auto;
+    }
+    .kentta {
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      margin-bottom: 4px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    #vastaus-alue {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #f4f4f4;
+      border-radius: 6px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lisää uusi käyttäjä</h1>
+
+  <!-- Huom: name-attribuutit ovat pakollisia FormDatalle -->
+  <form id="lisayslomake">
+    <div class="kentta">
+      <label for="firstName">Etunimi</label>
+      <input type="text" id="firstName" name="firstName" required />
+    </div>
+    <div class="kentta">
+      <label for="lastName">Sukunimi</label>
+      <input type="text" id="lastName" name="lastName" required />
+    </div>
+    <div class="kentta">
+      <label for="email">Sähköposti</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <button type="submit" id="laheta-painike">Lähetä tiedot</button>
+  </form>
+
+  <!-- Tilailmoitukset ja palvelimen palauttama vastaus -->
+  <div id="tila-alue" style="margin-top: 16px; font-weight: bold;"></div>
+  <pre id="vastaus-alue" style="display: none;"></pre>
+
+  <script src="post.js"></script>
+</body>
+</html>
