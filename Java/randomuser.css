@@ -1,0 +1,31 @@
+body {
+  font-family: sans-serif;
+  background-color: #f4f4f9;
+  padding: 20px;
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  /* Vähintään 2 korttia rinnakkain normaalilevyisillä näytöillä */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word; /* Estää pitkän sähköpostin ylivuodon */
+}
+
+.card p {
+  margin: 6px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.card strong {
+  color: #000;
+}
