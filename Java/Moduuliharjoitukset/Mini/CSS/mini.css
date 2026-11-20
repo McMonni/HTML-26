@@ -1,0 +1,122 @@
+/* Perusasetukset ja keskitys */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f4f6f8;
+  color: #1f2937;
+  max-width: 520px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+  color: #111827;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #4b5563;
+}
+
+/* Lomake ja syöttökenttä */
+#task-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#task-input {
+  flex: 1;
+  padding: 0.65rem 0.85rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#task-input:focus {
+  border-color: #2563eb;
+}
+
+#task-form button {
+  padding: 0.65rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#task-form button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Tehtävälista */
+#task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+#task-list input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  cursor: pointer;
+  accent-color: #2563eb;
+}
+
+#task-list span {
+  flex: 1;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* Poista-nappi */
+#task-list button {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.85rem;
+  color: #dc2626;
+  background-color: #fee2e2;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#task-list button:hover {
+  background-color: #fecaca;
+}
+
+/* Laskuri alhaalla */
+#task-count {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+  text-align: right;
+}
