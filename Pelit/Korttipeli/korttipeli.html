@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="src/main.js"></script>
+  </head>
+  <body>
+    <div class="table">
+      <header>
+        <h1>Blackjack 21</h1>
+        <p id="stats">Voitot: 0 | Tappiot: 0 | Tasapelit: 0</p>
+      </header>
+
+      <section class="hand-area">
+        <h2>Jakaja (<span id="dealer-score">0</span>)</h2>
+        <div id="dealer-cards" class="cards"></div>
+      </section>
+
+      <div id="message" class="message">Paina "Uusi kierros" aloittaaksesi!</div>
+
+      <section class="hand-area">
+        <h2>Pelaaja (<span id="player-score">0</span>)</h2>
+        <div id="player-cards" class="cards"></div>
+      </section>
+
+      <div class="controls">
+        <button id="btn-hit" disabled>Nosta kortti</button>
+        <button id="btn-stand" disabled>Jää</button>
+        <button id="btn-new">Uusi kierros</button>
+      </div>
+    </div>
+  </body>
+</html>
